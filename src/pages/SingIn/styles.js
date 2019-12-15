@@ -22,36 +22,28 @@ export const Container = styled.div`
         }
 
         label {
-            font-size: 12px;
             font-weight: bold;
-            color: #333;
+            color: #444;
             margin-bottom: 5px;
         }
 
         input {
             border: 0;
             border-radius: 4px;
-            border: solid 1px #ccc;
+            border: solid 1px #ddd;
             height: 44px;
             padding: 0 15px;
             margin: 0 0 10px;
 
             &::placeholder {
-                color: #ccc;
+                color: #999;
             }
         }
 
         span {
-            color: #ff8383;
+            color: #ef4d62;
             align-self: flex-start;
             margin: 0 0 10px;
-        }
-
-        hr {
-            border: 0;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.2);
-            margin: 10px 0 20px;
         }
 
         button {

@@ -45,7 +45,10 @@ module.exports = {
         'react/state-in-constructor': 'off',
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'warn',
-        'react/jsx-props-no-spreading': 'off'
+        'react/jsx-props-no-spreading': 'off',
+        'jsx-a11y/label-has-associated-control': 'off',
+        'react-hooks/exhaustive-deps': 'off',
+        'no-unused-expressions': 'off'
     },
     settings: {
         "import/resolver": {

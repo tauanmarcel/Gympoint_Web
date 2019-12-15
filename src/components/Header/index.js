@@ -1,42 +1,46 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import Notifications from '~/components/Notifications';
+import { singOut } from '~/store/modules/auth/actions';
 
-import logo from '~/assets/logo.svg';
-
-import { Container, Content, Profile } from './styles';
+import logofdp from '~/assets/logo-slim.png';
+import { Container } from './styles';
 
 export default function Header() {
     const profile = useSelector(state => state.user.profile);
 
+    const dispatch = useDispatch();
+
+    function handleSingOut() {
+        dispatch(singOut());
+    }
+
     return (
         <Container>
-            <Content>
-                <nav>
-                    <img src={logo} alt="Gobarber" />
-                    <Link to="/dashboard">DASHBOARD</Link>
-                </nav>
+            <header>
+                <img src={logofdp} alt="Gympoint" />
+                <ul>
+                    <li>
+                        <a href="student">ALUNOS</a>
+                    </li>
+                    <li>
+                        <a href="plans">PLANOS</a>
+                    </li>
+                    <li>
+                        <a href="registrations">MATRÍCULAS</a>
+                    </li>
+                    <li>
+                        <a href="help-orders">PEDIDOS DE AUXÍLIO</a>
+                    </li>
+                </ul>
 
-                <aside>
-                    <Notifications />
-
-                    <Profile>
-                        <div>
-                            <strong>{profile.name}</strong>
-                            <Link to="/profile">Meu perfil</Link>
-                        </div>
-                        <img
-                            src={
-                                profile.avatar.url ||
-                                'https://api.adorable.io/avatars/50/abbot@adorable.png'
-                            }
-                            alt={profile.name}
-                        />
-                    </Profile>
-                </aside>
-            </Content>
+                <div>
+                    <p>{profile.name}</p>
+                    <button type="button" onClick={handleSingOut}>
+                        sair do sistema
+                    </button>
+                </div>
+            </header>
         </Container>
     );
 }

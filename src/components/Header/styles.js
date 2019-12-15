@@ -1,65 +1,58 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
-    background: #fff;
-    padding: 0 30px;
-`;
-export const Content = styled.div`
-    height: 64px;
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    nav {
+    header {
+        background: #fff;
+        margin: 0 auto;
+        border: solid 1px #ddd;
+        border-top: none;
         display: flex;
-        align-items: center;
 
         img {
-            margin-right: 20px;
-            padding-right: 20px;
-            border-right: 1px solid #eee;
+            margin: 12px;
+            padding: 3px 25px;
+            border-right: solid 1px #ddd;
         }
 
-        a {
-            font-weight: bold;
-            color: #7159c1;
-        }
-    }
+        ul {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
 
-    aside {
-        display: flex;
-        align-items: center;
-    }
-`;
-
-export const Profile = styled.div`
-    display: flex;
-    margin-left: 20px;
-    padding-left: 20px;
-    border-left: 1px solid #eee;
-
-    div {
-        text-align: right;
-        margin-right: 10px;
-
-        strong {
-            display: block;
-            color: #333;
+            li {
+                a {
+                    margin-right: 25px;
+                    color: #999;
+                    font-weight: bold;
+                }
+            }
         }
 
-        a {
-            display: block;
-            margin-top: 2px;
-            font-size: 12px;
-            color: #999;
-        }
-    }
+        div {
+            align-items: center;
+            flex-direction: row;
+            align-self: center;
+            margin-left: auto;
+            padding: 0 30px;
+            text-align: right;
 
-    img {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
+            p {
+                font-weight: bold;
+                margin-bottom: 2px;
+                color: #667;
+            }
+
+            button {
+                color: rgba(222, 59, 59, 1);
+                font-weight: bold;
+                background: none;
+                border: none;
+
+                &:hover {
+                    color: ${darken(0.15, 'rgba(222, 59, 59, 1)')};
+                }
+            }
+        }
     }
 `;
