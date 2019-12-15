@@ -21,7 +21,7 @@ export default function Header() {
                 <img src={logofdp} alt="Gympoint" />
                 <ul>
                     <li>
-                        <a href="student">ALUNOS</a>
+                        <a href="students">ALUNOS</a>
                     </li>
                     <li>
                         <a href="plans">PLANOS</a>

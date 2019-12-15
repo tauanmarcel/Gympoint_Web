@@ -30,11 +30,7 @@ export default function SingIn() {
             <Form schema={schema} onSubmit={handleSubmit}>
                 <img src={logo} alt="Gympoint" />
                 <label htmlFor="email">SEU E-MAIL</label>
-                <Input
-                    name="email"
-                    type="email"
-                    placeholder="Seu e-mail"
-                />
+                <Input name="email" type="email" placeholder="Seu e-mail" />
                 <label htmlFor="password">SUA SENHA</label>
                 <Input
                     name="password"

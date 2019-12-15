@@ -4,13 +4,8 @@ import { FaPlus, FaSearch } from 'react-icons/fa';
 import { parseISO, getYear, getMonth, getDate } from 'date-fns';
 
 import Header from '~/components/Header';
-import {
-    Center,
-    ContentMain,
-    ContentTop,
-    Edit,
-    Del
-} from '~/components/Main/styles';
+import { Center, ContentMain, ContentTop, Edit, Del } from '~/styles/main';
+import { BtnRed } from '~/styles/button';
 
 import api from '~/services/api';
 
@@ -44,7 +39,7 @@ export default function Student() {
 
         const studentParsed = response.data.map(student => ({
             ...student,
-            age: calculateAge(student.birht)
+            age: calculateAge(student.birth)
         }));
 
         setStudents([...studentParsed]);
@@ -72,11 +67,11 @@ export default function Student() {
                                 }
                             />
                         </Form>
-                        <a href="">
-                            <button type="button">
+                        <a href="students-create">
+                            <BtnRed type="button">
                                 <FaPlus />
                                 CADASTRAR
-                            </button>
+                            </BtnRed>
                         </a>
                     </aside>
                 </ContentTop>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
+import { Input } from '@rocketseat/unform';
 
 export const Center = styled.div`
     max-width: 1024px;
@@ -22,25 +23,6 @@ export const ContentTop = styled.div`
         text-align: right;
         display: inline-block;
 
-        > a > button {
-            float: right;
-            height: 36px;
-            width: 142px;
-            background: rgba(222, 59, 59, 1);
-            border: 0;
-            border-radius: 4px;
-            color: #fff;
-            margin-right: 15px;
-
-            &:hover {
-                background: ${darken(0.08, 'rgba(222, 59, 59, 1)')};
-            }
-
-            svg {
-                margin-right: 5px;
-            }
-        }
-
         form {
             float: right;
 
@@ -49,6 +31,7 @@ export const ContentTop = styled.div`
                 margin-right: -30px;
                 width: 30px;
                 position: relative;
+                margin-left: 15px;
             }
             input {
                 border: solid 1px #ddd;
@@ -68,14 +51,16 @@ export const ContentMain = styled.div`
     background: #fff;
     margin: 0 auto;
     border: solid 1px #ddd;
-    display: flex;
+    display: inline-block;
     border-radius: 4px;
     padding: 20px 25px;
+    width: 100%;
 
     table {
         align-self: stretch;
         flex: 1;
         border-collapse: collapse;
+        width: 100%;
 
         thead {
             tr {
@@ -132,4 +117,31 @@ export const Del = styled.button`
     &:hover {
         color: ${darken(0.15, 'rgba(222, 59, 59, 1)')};
     }
+`;
+
+export const ContentForm = styled.div`
+    margin-top: 15px;
+
+    span {
+        color: #ee4d64;
+        display: block;
+        margin-top: -18px;
+        margin-bottom: 8px;
+    }
+`;
+
+export const UnformInput = styled(Input)`
+    border: solid 1px #ddd;
+    border-radius: 4px;
+    height: 36px;
+    text-indent: 25px;
+    width: 100%;
+    margin-bottom: 20px;
+`;
+
+export const UnformLable = styled.label`
+    margin-bottom: 5px;
+    display: flex;
+    color: #444;
+    font-weight: bold;
 `;
