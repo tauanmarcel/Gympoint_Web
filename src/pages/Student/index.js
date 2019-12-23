@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import { FaPlus, FaSearch } from 'react-icons/fa';
 import { parseISO, getYear, getMonth, getDate } from 'date-fns';
+import { toast } from 'react-toastify';
 
 import Header from '~/components/Header';
 import { Center, ContentMain, ContentTop, Edit, Del } from '~/styles/main';
@@ -45,6 +46,26 @@ export default function Student() {
         setStudents([...studentParsed]);
     }
 
+    async function handleDelete(id) {
+        const confirmation = window.confirm(
+            'Deseja realmente excluir esse aluno?'
+        );
+
+        if (confirmation) {
+            try {
+                await api.delete(`students/${id}`);
+
+                toast.success('Aluno excluído com sucesso!');
+                setTimeout(() => window.location.reload(true), 3000);
+            } catch (err) {
+                toast.error(
+                    'Não foi possível excluir o aluno. Tente novamente.'
+                );
+                setTimeout(() => window.location.reload(true), 3000);
+            }
+        }
+    }
+
     useEffect(() => {
         handleLoadStudents();
     }, []);
@@ -57,6 +78,12 @@ export default function Student() {
                     <h1>Gerenciando alunos</h1>
 
                     <aside>
+                        <a href="students-create">
+                            <BtnRed type="button">
+                                <FaPlus />
+                                CADASTRAR
+                            </BtnRed>
+                        </a>
                         <Form>
                             <FaSearch />
                             <Input
@@ -67,12 +94,6 @@ export default function Student() {
                                 }
                             />
                         </Form>
-                        <a href="students-create">
-                            <BtnRed type="button">
-                                <FaPlus />
-                                CADASTRAR
-                            </BtnRed>
-                        </a>
                     </aside>
                 </ContentTop>
 
@@ -80,9 +101,9 @@ export default function Student() {
                     <table>
                         <thead>
                             <tr>
-                                <th width="35%">NOME</th>
-                                <th width="35%">E-MAIL</th>
-                                <th width="15%">IDADE</th>
+                                <th>NOME</th>
+                                <th>E-MAIL</th>
+                                <th>IDADE</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -90,12 +111,20 @@ export default function Student() {
                                 <tr>
                                     <td>{student.name}</td>
                                     <td>{student.email}</td>
+                                    <td>{student.age}</td>
                                     <td>
-                                        <span>{student.age}</span>
-                                    </td>
-                                    <td>
-                                        <Edit>editar</Edit>
-                                        <Del>apagar</Del>
+                                        <Edit
+                                            to={`students-update/${student.id}`}
+                                        >
+                                            editar
+                                        </Edit>
+                                        <Del
+                                            onClick={() =>
+                                                handleDelete(student.id)
+                                            }
+                                        >
+                                            apagar
+                                        </Del>
                                     </td>
                                 </tr>
                             ))}

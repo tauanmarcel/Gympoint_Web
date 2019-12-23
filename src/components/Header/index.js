@@ -18,19 +18,21 @@ export default function Header() {
     return (
         <Container>
             <header>
-                <img src={logofdp} alt="Gympoint" />
+                <a href="/students">
+                    <img src={logofdp} alt="Gympoint" />
+                </a>
                 <ul>
                     <li>
-                        <a href="students">ALUNOS</a>
+                        <a href="/students">ALUNOS</a>
                     </li>
                     <li>
-                        <a href="plans">PLANOS</a>
+                        <a href="/plans">PLANOS</a>
                     </li>
                     <li>
-                        <a href="registrations">MATRÍCULAS</a>
+                        <a href="/registrations">MATRÍCULAS</a>
                     </li>
                     <li>
-                        <a href="help-orders">PEDIDOS DE AUXÍLIO</a>
+                        <a href="/help-orders">PEDIDOS DE AUXÍLIO</a>
                     </li>
                 </ul>
 
