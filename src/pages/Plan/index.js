@@ -33,19 +33,17 @@ export default function Plan() {
                 await api.delete(`plans/${id}`);
 
                 toast.success('Plano excluído com sucesso!');
-                setTimeout(() => window.location.reload(true), 3000);
             } catch (err) {
                 toast.error(
                     'Não foi possível excluir o plano. Tente novamente.'
                 );
-                setTimeout(() => window.location.reload(true), 3000);
             }
         }
     }
 
     useEffect(() => {
         handleLoadPlans();
-    }, []);
+    }, [plans]);
 
     return (
         <div>

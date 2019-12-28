@@ -128,17 +128,11 @@ export default function CreateRegistration({ match }) {
         setFirstLoad(false);
     }, [regPlanId]);
 
-    function reload(time = 3000) {
-        setTimeout(() => window.location.reload(true), time);
-    }
-
     // eslint-disable-next-line consistent-return
-    async function handleSubmit({
-        id = registrationId,
-        student_id,
-        plan_id,
-        start_date
-    }) {
+    async function handleSubmit(
+        { id = registrationId, student_id, plan_id, start_date },
+        { resetForm }
+    ) {
         if (isBefore(start_date, new Date())) {
             toast.error(
                 'Data inválida! A data de início não pode ser anterior á atual.'
@@ -157,6 +151,8 @@ export default function CreateRegistration({ match }) {
                 });
 
                 toast.success('Nova matrícula efetuada com sucesso!');
+                setLoading(false);
+                resetForm();
             } else {
                 await api.put(`registrations/${id}`, {
                     student_id,
@@ -165,11 +161,11 @@ export default function CreateRegistration({ match }) {
                 });
 
                 toast.success('Matrícula atualizada com sucesso!');
+                setLoading(false);
             }
-            reload();
         } catch (err) {
             toast.error('Erro ao salvar os dados da matrícula!');
-            reload();
+            setLoading(false);
         }
     }
 

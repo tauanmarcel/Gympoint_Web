@@ -56,19 +56,19 @@ export default function Student() {
                 await api.delete(`students/${id}`);
 
                 toast.success('Aluno excluído com sucesso!');
-                setTimeout(() => window.location.reload(true), 3000);
+                handleLoadStudents();
             } catch (err) {
                 toast.error(
                     'Não foi possível excluir o aluno. Tente novamente.'
                 );
-                setTimeout(() => window.location.reload(true), 3000);
+                handleLoadStudents();
             }
         }
     }
 
     useEffect(() => {
         handleLoadStudents();
-    }, []);
+    }, [students]);
 
     return (
         <div>

@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { singOut } from '~/store/modules/auth/actions';
 
-import logofdp from '~/assets/logo-slim.png';
-import { Container } from './styles';
+import logo from '~/assets/logo-slim.png';
+import { Container, Nav } from './styles';
+import './styles.css';
 
-export default function Header() {
+export default function Header({ match }) {
     const profile = useSelector(state => state.user.profile);
 
     const dispatch = useDispatch();
@@ -19,20 +20,34 @@ export default function Header() {
         <Container>
             <header>
                 <a href="/students">
-                    <img src={logofdp} alt="Gympoint" />
+                    <img src={logo} alt="Gympoint" />
                 </a>
                 <ul>
                     <li>
-                        <a href="/students">ALUNOS</a>
+                        <Nav to="/students" activeClassName="main-nav-active">
+                            ALUNOS
+                        </Nav>
                     </li>
                     <li>
-                        <a href="/plans">PLANOS</a>
+                        <Nav to="/plans" activeClassName="main-nav-active">
+                            PLANOS
+                        </Nav>
                     </li>
                     <li>
-                        <a href="/registrations">MATRÍCULAS</a>
+                        <Nav
+                            to="/registrations"
+                            activeClassName="main-nav-active"
+                        >
+                            MATRÍCULAS
+                        </Nav>
                     </li>
                     <li>
-                        <a href="/help-orders">PEDIDOS DE AUXÍLIO</a>
+                        <Nav
+                            to="/help-orders"
+                            activeClassName="main-nav-active"
+                        >
+                            PEDIDOS DE AUXÍLIO
+                        </Nav>
                     </li>
                 </ul>
 

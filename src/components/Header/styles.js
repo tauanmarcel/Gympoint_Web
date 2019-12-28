@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
+import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
     header {
@@ -19,14 +20,6 @@ export const Container = styled.div`
             display: flex;
             align-items: center;
             margin-left: 20px;
-
-            li {
-                a {
-                    margin-right: 25px;
-                    color: #999;
-                    font-weight: bold;
-                }
-            }
         }
 
         div {
@@ -55,4 +48,10 @@ export const Container = styled.div`
             }
         }
     }
+`;
+
+export const Nav = styled(NavLink)`
+    margin-right: 25px;
+    color: #999;
+    font-weight: bold;
 `;

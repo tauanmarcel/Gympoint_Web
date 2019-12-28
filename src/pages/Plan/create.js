@@ -50,11 +50,10 @@ export default function CreatePlans({ match }) {
         loadPlans(match.params.id);
     }, []);
 
-    function reload(time = 3000) {
-        setTimeout(() => window.location.reload(true), time);
-    }
-
-    async function handleSubmit({ id = planId, title, duration, price }) {
+    async function handleSubmit(
+        { id = planId, title, duration, price },
+        { resetForm }
+    ) {
         setLoading(true);
 
         try {
@@ -66,6 +65,8 @@ export default function CreatePlans({ match }) {
                 });
 
                 toast.success('Novo plano cadastrado com sucesso!');
+                setLoading(false);
+                resetForm();
             } else {
                 await api.put(`plans/${id}`, {
                     title,
@@ -74,11 +75,12 @@ export default function CreatePlans({ match }) {
                 });
 
                 toast.success('Plano atualizado com sucesso!');
+                setLoading(false);
             }
-            reload();
         } catch (err) {
             toast.error('Erro ao salvar os dados do plano!');
-            reload();
+            setLoading(false);
+            resetForm();
         }
     }
 

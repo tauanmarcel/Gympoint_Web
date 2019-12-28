@@ -33,7 +33,8 @@ export default function Student() {
                 }
             )
         }));
-        setRegistrations(...registrations, regs);
+
+        setRegistrations([...regs]);
     }
 
     async function handleDelete(id) {
@@ -46,12 +47,11 @@ export default function Student() {
                 await api.delete(`registrations/${id}`);
 
                 toast.success('Matrícula excluída com sucesso!');
-                setTimeout(() => window.location.reload(true), 3000);
+                handleLoadRegistrations();
             } catch (err) {
                 toast.error(
                     'Não foi possível excluir a matrícula. Tente novamente.'
                 );
-                setTimeout(() => window.location.reload(true), 3000);
             }
         }
     }

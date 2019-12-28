@@ -62,18 +62,10 @@ export default function CreateStudent({ match }) {
         loadStudent(match.params.id);
     }, []);
 
-    function reload(time = 3000) {
-        setTimeout(() => window.location.reload(true), time);
-    }
-
-    async function handleSubmit({
-        id = studentId,
-        name,
-        email,
-        birth,
-        weight,
-        height
-    }) {
+    async function handleSubmit(
+        { id = studentId, name, email, birth, weight, height },
+        { resetForm }
+    ) {
         setLoading(true);
 
         try {
@@ -87,6 +79,8 @@ export default function CreateStudent({ match }) {
                 });
 
                 toast.success('Novo aluno cadastrado com sucesso!');
+                setLoading(false);
+                resetForm();
             } else {
                 await api.put(`students/${id}`, {
                     name,
@@ -97,11 +91,12 @@ export default function CreateStudent({ match }) {
                 });
 
                 toast.success('Aluno atualizado com sucesso!');
+                setLoading(false);
+                loadStudent(id);
             }
-            reload();
         } catch (err) {
             toast.error('Erro ao salvar os dados do aluno!');
-            reload();
+            setLoading(false);
         }
     }
 
@@ -186,7 +181,9 @@ export default function CreateStudent({ match }) {
                                         id="weight"
                                         value={studentWeight || null}
                                         onChange={e =>
-                                            setStudentWeight(e.target.value)
+                                            setStudentWeight(
+                                                e.target.value.replace(',', '.')
+                                            )
                                         }
                                     />
                                 </p>
@@ -199,7 +196,9 @@ export default function CreateStudent({ match }) {
                                         id="height"
                                         value={studentHeight || null}
                                         onChange={e =>
-                                            setStudentHeight(e.target.value)
+                                            setStudentHeight(
+                                                e.target.value.replace(',', '.')
+                                            )
                                         }
                                     />
                                 </p>
